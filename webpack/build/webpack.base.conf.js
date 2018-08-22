@@ -10,7 +10,7 @@ module.exports = {
         app: './src/assets/js/index.js'
     },
     output: {
-        filename: '[name].[id].[hash].js',
+        filename: '[name].[id].[chunkhash].js',
         path: path.resolve(__dirname, '../dist')
     },
     resolve: {
@@ -51,5 +51,16 @@ module.exports = {
         // 将css从bundle_js文件中抽离，并生成css文件
         new ExtractTextPlugin('name.css'),
         new manifestPlugin()
-    ]
+    ],
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                commons: {
+                    name: 'commons',
+                    chunks: "initial",
+                    minChunks: 2
+                }
+            }
+        }
+    }
 };
