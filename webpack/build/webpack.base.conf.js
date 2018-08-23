@@ -11,13 +11,16 @@ module.exports = {
     },
     output: {
         filename: '[name].[id].[chunkhash].js',
-        path: path.resolve(__dirname, '../dist')
+        path: path.resolve(__dirname, '../dist'),
+        library: 'testl',
+        libraryTarget: 'umd'
     },
     resolve: {
         extensions: ['.js', '.vue', '.json'],
         alias: {
             '@': path.resolve(__dirname, '../src')
-        }
+        },
+        symlinks: false
     },
     module: {
         rules: [

@@ -9,4 +9,12 @@ const myApp = new Vue({
   template: '<div>11111</div>'
 })
 
-console.log(myApp, 1, 2);
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js').then(registeration => {
+            console.log('SW registered: ', registeration);
+        }).catch(registerationError => {
+            console.log('SW registeration failed:', registerationError);
+        });
+    });
+}
